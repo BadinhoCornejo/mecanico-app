@@ -1,0 +1,103 @@
+@import './src/styles.sass'
+
+header
+    margin-top: 16px
+
+nav.generic-navbar
+    .nav-brand
+        width: 20%
+        align-self: flex-start
+        transition: $generic-transition
+        position: fixed
+        @media screen and ( max-width: $phone )
+            left: 16px
+        a
+            font-size: 36px
+            font-weight: 500
+            @media screen and ( max-width: $phone )
+                font-size: 16px
+    .nav-brand:hover
+        transform: scale(1.1)
+    .nav-links
+        align-self: center
+        ul
+            @include flex(row, center)
+            padding-left: 14em
+            @media screen and ( max-width: $phone )
+                display: none
+            @media screen and ( max-width: $tablet )
+                display: none
+
+                align-self: center
+            li
+                margin-left: 24px
+                a:hover
+                    color: $secundary-color
+    .nav-actions
+        width: 20%
+        @include flex(row, flex-end)
+        align-self: flex-end
+        .nav-signout
+            color: $base-color
+            @media screen and ( max-width: $phone )
+                display: none
+            @media screen and ( max-width: $tablet )
+                display: none
+        a:hover
+            color: $secundary-color
+        button
+            color: white
+            font-size: 30px
+            display: none
+            position: fixed
+            @media screen and ( max-width: $phone )
+                display: block
+                right: 16px
+            @media screen and ( max-width: $tablet )
+                display: block
+
+.drawer-container
+    width: 200px
+    height: 100vh
+    border: 1px solid #555
+    position: absolute
+    right: 0
+    top: 0
+    background-color: $base-color
+    .side-links
+        @include flex(column, null)
+        button
+            width: 100% !important
+            display: flex !important
+            justify-content: flex-end !important
+            right: 16px !important
+            margin-top: 16px !important
+            i
+                color: black
+        ul
+            width: 62%
+            margin-top: 4em
+            margin-right: 34px
+            @include flex(column, center)
+            @media screen and ( max-width: $tablet )
+                width: 80%
+            @media screen and ( max-width: $phone )
+                width: 62%
+            li
+                width: 100%
+                @include pv(16px,16px)
+                border-bottom: 1px solid #D0D1D2
+                a
+                    color: black
+        
+                a:hover
+                    color: black !important
+        .sidenav-signout
+            align-self: flex-end
+            margin-top: 32px
+            margin-right: 32px
+            color: black
+    @media screen and ( max-width: $phone )
+        width: 150px
+    @media screen and ( min-width: 770px )
+        display: none

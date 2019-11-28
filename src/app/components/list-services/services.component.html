@@ -1,0 +1,97 @@
+<app-header></app-header>
+
+<form
+  (ngSubmit)="openNewServiceModal()"
+  class="column-container-center new-service"
+>
+  <h2>Listado general de servicios</h2>
+  <button type="submit" class="generic-btn">NUEVO SERVICIO</button>
+  <button
+    type="button"
+    *ngIf="eliminar"
+    class="secundary-btn"
+    (click)="openConfirmationMsg()"
+  >
+    ELIMINAR
+  </button>
+</form>
+
+<div class="mat-elevation-z8 tablita">
+  <mat-form-field class="ml-4 mt-2 filtro">
+    <input
+      matInput
+      (keyup)="aplicarFiltro($event.target.value)"
+      placeholder="Filtrar"
+    />
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="opciones">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox
+          (change)="checkDetalle($event, element)"
+          [checked]="element.eliminar"
+        ></mat-checkbox>
+        <span style="margin-left: 16px;"  class="edit-action-element" (click)="openEditService(element)">
+            Editar
+          </span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</th>
+      <td mat-cell  *matCellDef="let element">
+
+          {{
+            element.servicioMecanico.cliente.nombre +
+              " " +
+              element.servicioMecanico.cliente.apellido
+          }}
+
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="servicio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Servicio</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.servicio.nombre }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.servicioMecanico.fecha }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="marca">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.marca }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="modelo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Modelo</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.modelo }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="placa">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Placa</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.placa }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="monto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Monto</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.servicio.monto }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

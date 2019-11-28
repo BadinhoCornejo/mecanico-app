@@ -1,0 +1,43 @@
+@import "./src/styles.sass"
+
+.form-login
+    h2
+        color: $base-color
+        align-self: center
+        font-size: 16px
+        margin-bottom: 16px
+    @include top()
+.login-btn
+    align-self: center
+    
+
+.registry-container
+    width: 100%
+    align-self: center
+    form
+        width: 40%
+
+        align-self: center
+        background-color: $base-color
+        border-radius: 4px
+        margin-top: 50px
+
+        color: black
+        font-size: 16px
+        padding: 16px
+        padding-top: 32px
+        @include ph(32px,32px)
+        h1
+            align-self: center
+            font-weight: 400
+        .form-field
+            width: 100%
+            margin-top: 16px
+        @media screen and ( max-width: $phone )
+            width: 100%
+        @media screen and ( max-width: 414px )
+            width: 100%
+        @media screen and ( min-width: $phone )
+            margin-top: 100px
+        @media screen and ( max-width: $desktop )
+            margin-top: 50px

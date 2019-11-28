@@ -1,0 +1,41 @@
+<header>
+  <nav class="generic-navbar inline-container">
+    <div class="nav-brand">
+      <a href="/">AUDI SERVICES</a>
+    </div>
+    <div class="nav-links inline-container-center">
+      <ul>
+        <li class="link-item"><a href="#">A1</a></li>
+        <li class="link-item"><a href="#">Q7</a></li>
+        <li class="link-item"><a href="#">R8</a></li>
+      </ul>
+    </div>
+    <div class="nav-actions">
+      <button (click)="drawer.toggle()">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+      <mat-drawer #drawer [mode]="over" class="drawer-container">
+        <div class="side-links">
+          <button (click)="drawer.toggle()">
+            <i class="fas fa-times"></i>
+          </button>
+
+          <ul>
+            <li class="link-item"><a href="#">A1</a></li>
+            <li class="link-item"><a href="#">Q7</a></li>
+            <li class="link-item"><a href="#">R8</a></li>
+          </ul>
+          <a
+            (click)="signOut()"
+            class="sidenav-signout"
+            *ngIf="usuario"
+            >Cerrar sesión</a
+          >
+        </div>
+      </mat-drawer>
+      <a (click)="signOut()" class="nav-signout" *ngIf="usuario"
+        >Cerrar sesión</a
+      >
+    </div>
+  </nav>
+</header>

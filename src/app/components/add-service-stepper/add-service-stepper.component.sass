@@ -1,0 +1,43 @@
+@import "./src/styles.sass"
+
+.new-service-container
+    width: 100%
+    align-self: center
+    @include top()
+    @media screen and ( max-width: $phone )
+        width: 100%
+    @media screen and ( max-width: 414px )
+        width: 100%
+    @media screen and ( min-width: $phone )
+        margin-top: 100px
+    @media screen and ( max-width: $desktop )
+        margin-top: 50px
+
+.myStepper-hide
+    width: 750px !important
+    align-self: center
+.myStepper
+    
+    margin-top: 32px
+    align-self: center
+.stepper-actions
+    display: flex
+    justify-content: center
+    button
+        align-self: center
+        margin-left: 16px
+
+.stepper-done
+    @include flex(column, center)
+    height: 200px
+    span
+        margin-bottom: 32px
+        align-self: center
+        i
+            font-size: 36px
+            color: #4CED69
+    h1
+        font-family: $generic-font
+        align-self: center
+        font-weight: 400
+        font-size: 24px

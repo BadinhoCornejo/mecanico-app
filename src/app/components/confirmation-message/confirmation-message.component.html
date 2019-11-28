@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>¿Seguro que desea eliminar estos elementos?</h1>
+<div mat-dialog-content>
+  <div class="inline-container-center dialog-actions">
+    <button class="no-action-btn" [mat-dialog-close]="false" cdkFocusInitial>
+      Cancelar
+    </button>
+    <button class="danger-btn" [mat-dialog-close]="true" cdkFocusInitial>
+      Eliminar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<app-header *ngIf="show"></app-header>
+
+<div [ngClass]="{ 'column-container-center new-service-container': show }">
+  <mat-horizontal-stepper
+    [linear]="true"
+    #stepper
+    [ngClass]="{ 'myStepper-hide': show, myStepper: !show }"
+  >
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Nuevo servicio</ng-template>
+      <form [formGroup]="firstFormGroup">
+        <input type="hidden" formControlName="firstSubmitted" value="" />
+      </form>
+      <!--CHILD COMPONENT-->
+      <app-new-service
+        [submit]="submitFirstStep"
+        [reset]="reset"
+        (servmcID)="getServmcID($event)"
+        (firstStepReady)="getFirstStepReady($event)"
+        (firstStepDone)="getFirstStepDone($event)"
+      ></app-new-service>
+      <!--CHILD COMPONENT-->
+      <div class="stepper-actions">
+        <button
+          mat-button
+          matStepperNext
+          class="generic-btn"
+          *ngIf="!processDone"
+        >
+          AGREGAR DETALLE
+        </button>
+        <button
+          mat-button
+          matStepperNext
+          class="generic-btn"
+          *ngIf="processDone"
+        >
+          SIGUIENTE
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>Agregar detalle</ng-template>
+      <form [formGroup]="secondFormGroup">
+        <input type="hidden" formControlName="secondSubmitted" />
+      </form>
+      <!--CHILD COMPONENT-->
+      <app-add-detail
+        [submit]="submitSecondStep"
+        [reset]="reset"
+        [servmcID]="servmcID"
+        [modal]="false"
+        (secondStepReady)="getSecondStepReady($event)"
+        (secondStepDone)="getSecondStepDone($event)"
+      ></app-add-detail>
+      <!--CHILD COMPONENT-->
+      <div class="stepper-actions">
+        <button mat-button matStepperPrevious class="no-action-btn">
+          ATRÁS
+        </button>
+        <button
+          mat-button
+          (click)="done()"
+          class="generic-btn"
+          *ngIf="!processDone"
+        >
+          FINALIZAR
+        </button>
+        <button
+          mat-button
+          matStepperNext
+          class="generic-btn"
+          *ngIf="processDone"
+        >
+          SIGUIENTE
+        </button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Terminado</ng-template>
+      <div class="stepper-done">
+        <span><i class="far fa-check-circle"></i></span>
+        <h1>Se agregó un nuevo servicio.</h1>
+      </div>
+      <div class="stepper-actions">
+        <button mat-button matStepperPrevious>ATRÁS</button>
+        <button mat-button (click)="onReset(stepper)" class="generic-btn">
+          VOLVER A AGREGAR SERVICIO
+        </button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,112 @@
+<div class="mat-dialog-header">
+  <span (click)="onNoClick()"><i class="fas fa-times"></i></span>
+</div>
+
+<h1 mat-dialog-title>
+  Editar servicio de:
+  {{
+    detalleServicio.servicioMecanico.cliente.nombre +
+      " " +
+      detalleServicio.servicioMecanico.cliente.apellido
+  }}
+</h1>
+
+<form
+  [formGroup]="form"
+  class="column-container-center"
+  (ngSubmit)="submitDetalle()"
+>
+  <mat-form-field class="form-field">
+    <label for="servicio">Servicio</label>
+    <mat-select formControlName="servicioID">
+      <mat-option
+        *ngFor="let servicio of servicios"
+        [value]="servicio.servicioID"
+      >
+        {{ servicio.nombre }}
+      </mat-option>
+    </mat-select>
+    <div *ngIf="submitted && f.servicioID.errors" class="invalid-feedback">
+      <div *ngIf="f.servicioID.errors.required">
+        Por favor seleccionar un servicio
+      </div>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <label for="marca">Marca</label>
+    <input
+      id="marca"
+      name="marca"
+      matInput
+      formControlName="marca"
+      [ngClass]="{ 'is-invalid': submitted && f.marca.errors }"
+      type="text"
+    />
+    <div *ngIf="submitted && f.marca.errors" class="invalid-feedback">
+      <div *ngIf="f.marca.errors.required">
+        Por favor ingresar la marca
+      </div>
+    </div>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <label for="modelo">Modelo</label>
+    <input
+      id="modelo"
+      name="modelo"
+      matInput
+      formControlName="modelo"
+      [ngClass]="{ 'is-invalid': submitted && f.modelo.errors }"
+      type="text"
+    />
+    <div *ngIf="submitted && f.modelo.errors" class="invalid-feedback">
+      <div *ngIf="f.modelo.errors.required">
+        Por favor ingresar el modelo
+      </div>
+    </div>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <label for="placa">Placa</label>
+    <input
+      id="placa"
+      name="placa"
+      matInput
+      formControlName="placa"
+      [ngClass]="{ 'is-invalid': submitted && f.placa.errors }"
+      type="text"
+    />
+    <div *ngIf="submitted && f.placa.errors" class="invalid-feedback">
+      <div *ngIf="f.placa.errors.required">
+        Por favor ingresar la placa
+      </div>
+    </div>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <label for="placa">Contenido</label>
+    <textarea
+      id="contenido"
+      name="contenido"
+      matInput
+      formControlName="contenido"
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      [ngClass]="{ 'is-invalid': submitted && f.contenido.errors }"
+    ></textarea>
+
+    <div *ngIf="submitted && f.placa.errors" class="invalid-feedback">
+      <div *ngIf="f.placa.errors.required">
+        Por favor ingresar la placa
+      </div>
+    </div>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button type="submit" class="generic-btn" cdkFocusInitial>
+      EDITAR SERVICIO
+    </button>
+    <button class="no-action-btn" (click)="openNewDetailModal()">
+      AGREGAR NUEVO VEHÍCULO
+    </button>
+  </div>
+</form>

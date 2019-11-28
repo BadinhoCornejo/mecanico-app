@@ -1,0 +1,65 @@
+<app-header></app-header>
+
+<form (ngSubmit)="goRegistry()" class="column-container-center form-registry">
+  <h2>¿No tienes una cuenta?</h2>
+  <button class="secundary-btn">REGISTRARSE</button>
+</form>
+
+<div class="column-container-center login-container">
+  <form
+    (ngSubmit)="submitLogin()"
+    class="column-container-center"
+    [formGroup]="form"
+  >
+    <h1>Login</h1>
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        placeholder="Nombre de usuario"
+        formControlName="username"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+        type="text"
+      />
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">
+          Por favor ingresar su nombre de usuario
+        </div>
+      </div>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        placeholder="Contraseña"
+        [type]="!hide ? 'password' : 'text'"
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">
+          Por favor ingrese su contraseña
+        </div>
+        <div *ngIf="f.password.errors.minlength">
+          La contraseña debe contener al menos 6 caracteres
+        </div>
+      </div>
+      <a
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ !hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </a>
+    </mat-form-field>
+    <div
+      *ngIf="userNotFoundMessage !== ''"
+      class="inline-container-center user-notFound"
+    >
+      <span>{{ userNotFoundMessage }}</span>
+    </div>
+    <div class="inline-container-center">
+      <button type="submit" class="generic-btn">INGRESAR</button>
+    </div>
+  </form>
+</div>

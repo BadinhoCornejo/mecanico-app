@@ -1,0 +1,9 @@
+<app-header></app-header>
+
+<div class="inline-container-center welcome-message">
+  <h2>Bienvenido, {{ usuario.username }}</h2>
+</div>
+<div class="inline-container-center actions-container">
+  <button (click)="goNewService()" class="generic-btn">NUEVO SERVICIO</button>
+  <button (click)="goServices()" class="secundary-btn">VER SERVICIOS</button>
+</div>

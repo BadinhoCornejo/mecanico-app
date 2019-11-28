@@ -1,0 +1,26 @@
+@import "./src/styles.sass"
+
+.new-service
+    @include top()
+    h2
+        color: $base-color
+        align-self: center
+        font-size: 24px
+        margin-bottom: 8px
+    button
+        align-self: center
+        margin-top: 16px
+
+.tablita
+    margin-top: 32px
+    background-color: $base-color
+    .filtro
+        width: 100%
+        @include ph(16px, 64px)
+
+table
+    width: 100%
+
+.edit-action-element:hover
+    cursor: pointer
+    text-decoration: underline

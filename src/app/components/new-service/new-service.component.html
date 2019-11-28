@@ -1,0 +1,56 @@
+<form
+  class="column-container-center"
+  [formGroup]="form"
+>
+  <h1>Agregar un nuevo servicio</h1>
+  <mat-form-field class="form-field">
+    <label for="fecha">Fecha</label>
+    <input
+      id="fecha"
+      name="fecha"
+      matInput
+      formControlName="fecha"
+      [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }"
+      type="datetime-local"
+    />
+    <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+      <div *ngIf="f.fecha.errors.required">
+        Por favor ingresar la fecha
+      </div>
+      <div *ngIf="f.fecha.errors.pattern">
+        Por favor cumpla con el formato solicitado
+      </div>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <label for="personal">Personal</label>
+    <mat-select formControlName="personalID">
+      <mat-option
+        *ngFor="let personal of personals"
+        [value]="personal.personalID"
+      >
+        {{ personal.nombre + " " + personal.apellidos }}
+      </mat-option>
+    </mat-select>
+    <div *ngIf="submitted && f.personalID.errors" class="invalid-feedback">
+      <div *ngIf="f.personalID.errors.required">
+        Por favor seleccionar un personal
+      </div>
+    </div>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <label for="cliente">Cliente</label>
+    <mat-select formControlName="clienteID">
+      <mat-option *ngFor="let cliente of clientes" [value]="cliente.clienteID">
+        {{ cliente.nombre + " " + cliente.apellido }}
+      </mat-option>
+    </mat-select>
+    <div *ngIf="submitted && f.clienteID.errors" class="invalid-feedback">
+      <div *ngIf="f.clienteID.errors.required">
+        Por favor seleccionar un cliente
+      </div>
+    </div>
+  </mat-form-field>
+
+</form>

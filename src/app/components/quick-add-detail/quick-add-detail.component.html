@@ -1,0 +1,11 @@
+<div class="mat-dialog-header">
+  <span (click)="onNoClick()"><i class="fas fa-times"></i></span>
+</div>
+<app-add-detail
+  [submit]="false"
+  [reset]="false"
+  [servmcID]="servmcID"
+  [modal]="true"
+  (secondStepReady)="getSecondStepReady($event)"
+  (secondStepDone)="getSecondStepDone($event)"
+></app-add-detail>
